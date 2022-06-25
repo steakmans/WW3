@@ -28,7 +28,7 @@ public class Main {
     public static final ItemGroup TAB = new ItemGroup("ww3") {
         @Override
         public ItemStack createIcon() {
-            return ModItems.MATRAQUE.get().getDefaultInstance();
+            return ModItems.BILLET_1000.get().getDefaultInstance();
         }
     };
     private static final Logger LOGGER = LogManager.getLogger();

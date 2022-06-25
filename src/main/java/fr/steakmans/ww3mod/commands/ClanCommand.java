@@ -11,6 +11,7 @@ public class ClanCommand {
 
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("c").executes(cmd::run));
+        dispatcher.register(Commands.literal("clan").executes(cmd::run));
     }
 
     public int run(CommandContext<CommandSource> ctx) {
