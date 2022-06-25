@@ -1,10 +1,12 @@
 package fr.steakmans.ww3mod;
 
+import fr.steakmans.ww3mod.commands.ClanCommand;
 import fr.steakmans.ww3mod.items.ModItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -67,6 +69,11 @@ public class Main {
         /*LOGGER.info("Got IMC {}", event.getIMCStream().
                 map(m -> m.getMessageSupplier().get()).
                 collect(Collectors.toList()));*/
+    }
+
+    @SubscribeEvent
+    public void registerCommands(RegisterCommandsEvent e) {
+        ClanCommand.register(e.getDispatcher());
     }
 
 }
