@@ -83,9 +83,8 @@ public class Main {
     }
 
     public static List<ServerPlayerEntity> getPlayersWithPhone() {
-        List<ServerPlayerEntity> list = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers();
         List<ServerPlayerEntity> phoned = new ArrayList<>();
-        for (ServerPlayerEntity p: list) {
+        for (ServerPlayerEntity p: ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
             for (ItemStack stack: p.inventory.mainInventory) {
                 if(stack.getItem().equals(ModItems.PHONE)) {
                     phoned.add(p);
@@ -93,7 +92,7 @@ public class Main {
                 }
             }
         }
-        return list;
+        return phoned;
     }
 
 }
