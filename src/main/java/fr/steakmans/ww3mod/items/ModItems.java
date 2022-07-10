@@ -2,6 +2,7 @@ package fr.steakmans.ww3mod.items;
 
 import fr.steakmans.ww3mod.Main;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -10,6 +11,9 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MODID);
+
+    //phone
+    public static final RegistryObject<Item> PHONE = ITEMS.register("phone", PhoneItem::new);
 
     //money
     public static final RegistryObject<Item> BILLET_5 = ITEMS.register("billet_5", () -> new Item(new Item.Properties().group(Main.TAB)));

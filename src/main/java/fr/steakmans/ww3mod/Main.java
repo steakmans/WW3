@@ -2,9 +2,12 @@ package fr.steakmans.ww3mod;
 
 import fr.steakmans.ww3mod.commands.ClanCommand;
 import fr.steakmans.ww3mod.items.ModItems;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -16,9 +19,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Mod(Main.MODID)
@@ -74,6 +80,20 @@ public class Main {
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent e) {
         ClanCommand.register(e.getDispatcher());
+    }
+
+    public static List<ServerPlayerEntity> getPlayersWithPhone() {
+        List<ServerPlayerEntity> list = ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers();
+        List<ServerPlayerEntity> phoned = new ArrayList<>();
+        for (ServerPlayerEntity p: list) {
+            for (ItemStack stack: p.inventory.mainInventory) {
+                if(stack.getItem().equals(ModItems.PHONE)) {
+                    phoned.add(p);
+                    break;
+                }
+            }
+        }
+        return list;
     }
 
 }
